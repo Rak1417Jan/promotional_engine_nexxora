@@ -1,0 +1,40 @@
+# Minimal setup - Essential services only
+# Use this if you're having issues with the full setup
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: nexora_postgres
+    environment:
+      POSTGRES_DB: promotional_engine
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:7
+    container_name: nexora_mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: nexora_attributes
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: nexora_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  mongodb_data:
+  redis_data:

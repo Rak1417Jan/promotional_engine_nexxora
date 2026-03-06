@@ -1,0 +1,132 @@
+/* Dashboard Specific Styles */
+
+.dashboard-charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.chart-container {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container h3 {
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+}
+
+/* Campaigns List */
+.campaigns-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.campaign-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campaign-card-info h3 {
+    margin-bottom: 0.5rem;
+}
+
+.campaign-card-info p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.campaign-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.campaign-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.campaign-status.active {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.campaign-status.draft {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.campaign-status.paused {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.campaign-status.completed {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+/* Segments Grid */
+.segments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.segment-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.segment-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.segment-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.segment-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.segment-stat {
+    text-align: center;
+}
+
+.segment-stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.segment-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+

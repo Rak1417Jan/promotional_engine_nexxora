@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotional Marketing Engine - Dashboard</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Auth Screen (Login / Register Operator) -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-container">
+            <h1 class="auth-title">Promo Engine</h1>
+            <p class="auth-subtitle">Phase 1 – Operator sign in or register</p>
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab active" data-tab="login">Login</button>
+                <button type="button" class="auth-tab" data-tab="register">Register</button>
+            </div>
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required placeholder="you@company.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+            </form>
+            <form id="register-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label>Company name</label>
+                    <input type="text" name="name" required placeholder="My Operator Ltd">
+                </div>
+                <div class="form-group">
+                    <label>Domain URL</label>
+                    <input type="text" name="domain_url" required placeholder="myoperator.com">
+                </div>
+                <div class="form-group">
+                    <label>Contact email</label>
+                    <input type="email" name="contact_email" required placeholder="admin@myoperator.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required minlength="8" placeholder="Min 8 characters">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Create account</button>
+            </form>
+            <p id="auth-error" class="auth-error hidden"></p>
+        </div>
+    </div>
+
+    <div class="app-container" id="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Promo Engine</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard">
+                    <span>📊</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" data-page="campaigns">
+                    <span>📧</span> Campaigns
+                </a>
+                <a href="#" class="nav-item" data-page="players">
+                    <span>👥</span> Players
+                </a>
+                <a href="#" class="nav-item" data-page="segments">
+                    <span>🎯</span> Segments
+                </a>
+                <a href="#" class="nav-item" data-page="import-export">
+                    <span>📁</span> Import / Export
+                </a>
+                <a href="#" class="nav-item" data-page="insights">
+                    <span>💡</span> Insights
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <span>⚙️</span> Settings
+                </a>
+                <a href="#" class="nav-item" id="logout-btn">
+                    <span>🚪</span> Logout
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h2 id="page-title">Dashboard</h2>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="create-campaign-btn">+ New Campaign</button>
+                </div>
+            </header>
+
+            <!-- Dashboard Page -->
+            <div id="dashboard-page" class="page active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Players</h3>
+                        <p class="stat-value" id="stat-total-players">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Campaigns</h3>
+                        <p class="stat-value" id="stat-active-campaigns">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Campaign Open Rate</h3>
+                        <p class="stat-value" id="stat-open-rate">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Conversion Rate</h3>
+                        <p class="stat-value" id="stat-conversion-rate">0%</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Campaign Performance</h3>
+                        <canvas id="campaign-chart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Player Growth</h3>
+                        <canvas id="player-growth-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Campaigns Page -->
+            <div id="campaigns-page" class="page">
+                <div class="page-header">
+                    <h2>Campaigns</h2>
+                    <button class="btn btn-primary" id="create-campaign-btn-2">+ Create Campaign</button>
+                </div>
+                <div class="campaigns-list" id="campaigns-list">
+                    <!-- Campaigns will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Players Page -->
+            <div id="players-page" class="page">
+                <div class="page-header">
+                    <h2>Players</h2>
+                    <div class="header-actions">
+                        <button type="button" class="btn btn-secondary" id="seed-sample-players-btn">Import 1000 sample players</button>
+                        <button type="button" class="btn btn-primary" id="add-player-btn">+ Add player</button>
+                        <input type="text" class="search-input" placeholder="Search players..." id="player-search">
+                    </div>
+                </div>
+                <div class="players-pagination-bar">
+                    <span id="players-pagination-info">—</span>
+                    <div class="pagination-controls">
+                        <button type="button" class="btn btn-secondary btn-sm" id="players-prev">Previous</button>
+                        <span id="players-page-num">Page 1</span>
+                        <button type="button" class="btn btn-secondary btn-sm" id="players-next">Next</button>
+                    </div>
+                </div>
+                <div class="players-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                                <th>LTV</th>
+                                <th>Insights</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="players-table-body">
+                            <!-- Players will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Segments Page -->
+            <div id="segments-page" class="page">
+                <div class="page-header">
+                    <h2>Segments</h2>
+                    <div class="header-actions">
+                        <button type="button" class="btn btn-primary" id="ai-generate-segments-btn">Create AI segments from player data</button>
+                    </div>
+                </div>
+                <div class="segments-grid" id="segments-grid">
+                    <!-- Segments will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Analytics Page - Phase 3 feature (removed for Phase 1) -->
+
+            <!-- Import/Export Page -->
+            <div id="import-export-page" class="page">
+                <div class="page-header">
+                    <h2>Import / Export</h2>
+                </div>
+                <div class="import-export-grid">
+                    <div class="card">
+                        <h3>Import data</h3>
+                        <form id="import-form">
+                            <div class="form-group">
+                                <label>Entity type</label>
+                                <select name="entity_type">
+                                    <option value="player">Players</option>
+                                    <option value="game">Games</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>File (CSV, JSON, Excel)</label>
+                                <input type="file" name="file" accept=".csv,.json,.xlsx,.xls,.xml" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload & import</button>
+                        </form>
+                        <div id="import-jobs-list" class="jobs-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Export data</h3>
+                        <form id="export-form">
+                            <div class="form-group">
+                                <label>Entity type</label>
+                                <select name="entity_type">
+                                    <option value="player">Players</option>
+                                    <option value="game">Games</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Format</label>
+                                <select name="export_format">
+                                    <option value="csv">CSV</option>
+                                    <option value="json">JSON</option>
+                                    <option value="excel">Excel</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create export</button>
+                        </form>
+                        <div id="export-jobs-list" class="jobs-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights Page -->
+            <div id="insights-page" class="page">
+                <div class="page-header">
+                    <h2>Insights</h2>
+                </div>
+                <div class="insights-grid">
+                    <div class="card full-width">
+                        <h3>Revenue forecast</h3>
+                        <div class="chart-wrapper"><canvas id="insight-chart-revenue"></canvas></div>
+                    </div>
+                    <div class="card full-width">
+                        <h3>Retention & acquisition</h3>
+                        <div class="chart-row">
+                            <div class="chart-wrapper half"><canvas id="insight-chart-retention"></canvas></div>
+                            <div class="chart-wrapper half"><canvas id="insight-chart-acquisition"></canvas></div>
+                        </div>
+                    </div>
+                    <div class="card full-width">
+                        <h3>Campaign recommendations</h3>
+                        <div class="chart-wrapper"><canvas id="insight-chart-recommendations"></canvas></div>
+                    </div>
+                    <div class="card full-width">
+                        <h3>Player insights</h3>
+                        <p class="text-muted">Enter a player ID (numeric) or external ID and click Load insights.</p>
+                        <div class="form-group inline">
+                            <input type="text" id="insight-player-id" placeholder="Player ID or external ID">
+                            <button type="button" class="btn btn-secondary" id="load-player-insights-btn">Load insights</button>
+                        </div>
+                        <div class="chart-wrapper" id="player-insights-chart-wrap" style="display:none;">
+                            <canvas id="insight-chart-player"></canvas>
+                        </div>
+                        <div id="player-insights-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Page -->
+            <div id="settings-page" class="page">
+                <h2>Settings</h2>
+                <div class="settings-container">
+                    <!-- Settings will be loaded here -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add Player -->
+    <div id="player-modal" class="modal">
+        <div class="modal-content">
+            <span class="close player-modal-close">&times;</span>
+            <h2>Add player</h2>
+            <form id="player-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="player@example.com">
+                </div>
+                <div class="form-group">
+                    <label>First name</label>
+                    <input type="text" name="first_name" placeholder="John">
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" name="last_name" placeholder="Doe">
+                </div>
+                <div class="form-group">
+                    <label>Phone (optional)</label>
+                    <input type="tel" name="phone" placeholder="+1234567890">
+                </div>
+                <div class="form-group">
+                    <label>External ID (optional)</label>
+                    <input type="text" name="external_player_id" placeholder="your_system_id">
+                </div>
+                <button type="submit" class="btn btn-primary">Create player</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Campaign Details / Insights -->
+    <div id="campaign-details-modal" class="modal">
+        <div class="modal-content modal-content-wide">
+            <span class="close campaign-details-close">&times;</span>
+            <h2 id="campaign-details-title">Campaign details</h2>
+            <div id="campaign-details-body">
+                <p class="text-muted">Loading...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Create Campaign -->
+    <div id="campaign-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Campaign</h2>
+            <form id="campaign-form">
+                <div class="form-group">
+                    <label>Campaign Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Campaign Type</label>
+                    <select name="campaign_type" required>
+                        <option value="email">Email</option>
+                        <option value="sms">SMS</option>
+                        <option value="push">Push Notification</option>
+                        <option value="whatsapp">WhatsApp</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Target segment (optional)</label>
+                    <select name="target_segment_id" id="campaign-target-segment">
+                        <option value="">No segment (target all)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>AI Objective (Optional)</label>
+                    <textarea name="ai_objective" placeholder="Describe what you want this campaign to achieve..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Campaign</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api/client.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/components/dashboard.js"></script>
+    <script src="js/components/campaigns.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
+
