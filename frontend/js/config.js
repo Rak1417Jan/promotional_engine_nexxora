@@ -1,6 +1,6 @@
 // API Configuration
 const API_CONFIG = {
-    baseURL: 'http://localhost:8001/api/v1',
+    baseURL: 'http://localhost:8000/api/v1',
     timeout: 30000
 };
 

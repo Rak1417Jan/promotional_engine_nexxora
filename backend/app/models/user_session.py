@@ -28,7 +28,7 @@ class UserSession(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_token_hash", "token_hash"),
-        Index("idx_refresh_token", "refresh_token_hash"),
-        Index("idx_expires", "expires_at"),
+        Index("idx_user_sess_token", "token_hash"),
+        Index("idx_user_sess_refresh", "refresh_token_hash"),
+        Index("idx_user_sess_expires", "expires_at"),
     )

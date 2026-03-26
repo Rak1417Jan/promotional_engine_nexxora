@@ -26,8 +26,8 @@ class Event(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_player_time", "player_id", "timestamp"),
-        Index("idx_operator_type", "operator_id", "event_type", "timestamp"),
-        Index("idx_utm", "source_utm", "medium_utm", "campaign_utm"),
+        Index("idx_events_player_time", "player_id", "timestamp"),
+        Index("idx_events_operator_type", "operator_id", "event_type", "timestamp"),
+        Index("idx_events_utm", "source_utm", "medium_utm", "campaign_utm"),
     )
 

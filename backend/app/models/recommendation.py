@@ -26,7 +26,7 @@ class Recommendation(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_player", "player_id", "recommendation_type"),
-        Index("idx_operator", "operator_id"),
+        Index("idx_recs_player", "player_id", "recommendation_type"),
+        Index("idx_recs_operator", "operator_id"),
     )
 

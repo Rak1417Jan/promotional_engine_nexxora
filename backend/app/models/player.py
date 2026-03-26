@@ -36,8 +36,8 @@ class Player(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator_player", "operator_id", "external_player_id"),
-        Index("idx_status", "status"),
-        Index("idx_segment", "segment_id"),
+        Index("idx_players_operator_player", "operator_id", "external_player_id"),
+        Index("idx_players_status", "status"),
+        Index("idx_players_segment", "segment_id"),
     )
 

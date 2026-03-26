@@ -27,7 +27,7 @@ class Prediction(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_player_type", "player_id", "prediction_type"),
-        Index("idx_operator", "operator_id", "prediction_type"),
+        Index("idx_preds_player_type", "player_id", "prediction_type"),
+        Index("idx_preds_operator", "operator_id", "prediction_type"),
     )
 

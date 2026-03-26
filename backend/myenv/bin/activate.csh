@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV /Users/rakshitjangid/Downloads/nexxora_promotional_engine-main/backend/myenv
+setenv VIRTUAL_ENV /Users/rakshitjangid/Documents/PromoEngine/promotional_engine_nexxora/backend/myenv
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/"bin":$PATH"

@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV=/Users/rakshitjangid/Downloads/nexxora_promotional_engine-main/backend/myenv
+VIRTUAL_ENV=/Users/rakshitjangid/Documents/PromoEngine/promotional_engine_nexxora/backend/myenv
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

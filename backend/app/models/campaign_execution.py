@@ -30,8 +30,8 @@ class CampaignExecution(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_campaign_status", "campaign_id", "status"),
-        Index("idx_operator_player", "operator_id", "player_id"),
-        Index("idx_sent_at", "sent_at"),
+        Index("idx_campaign_exec_campaign_status", "campaign_id", "status"),
+        Index("idx_campaign_exec_operator_player", "operator_id", "player_id"),
+        Index("idx_campaign_exec_sent_at", "sent_at"),
     )
 

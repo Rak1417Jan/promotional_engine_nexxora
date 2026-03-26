@@ -1,4 +1,4 @@
-#!/Users/rakshitjangid/Downloads/nexxora_promotional_engine-main/backend/myenv/bin/python3.11
+#!/Users/rakshitjangid/Documents/PromoEngine/promotional_engine_nexxora/backend/myenv/bin/python3.11
 import sys
 from pip._internal.cli.main import main
 if __name__ == '__main__':

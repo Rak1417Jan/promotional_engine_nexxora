@@ -28,7 +28,7 @@ class OperatorSchema(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator_entity", "operator_id", "entity_type"),
-        Index("idx_active_schema", "operator_id", "entity_type", "is_active"),
-        Index("idx_default_schema", "operator_id", "entity_type", "is_default"),
+        Index("idx_op_schema_entity", "operator_id", "entity_type"),
+        Index("idx_op_schema_active", "operator_id", "entity_type", "is_active"),
+        Index("idx_op_schema_default", "operator_id", "entity_type", "is_default"),
     )

@@ -30,6 +30,6 @@ class ExportJob(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator_status", "operator_id", "status"),
-        Index("idx_entity_type", "operator_id", "entity_type"),
+        Index("idx_export_jobs_operator_status", "operator_id", "status"),
+        Index("idx_export_jobs_entity_type", "operator_id", "entity_type"),
     )

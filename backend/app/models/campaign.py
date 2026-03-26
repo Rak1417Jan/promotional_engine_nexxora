@@ -33,6 +33,6 @@ class Campaign(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator_status", "operator_id", "status"),
+        Index("idx_campaigns_operator_status", "operator_id", "status"),
     )
 

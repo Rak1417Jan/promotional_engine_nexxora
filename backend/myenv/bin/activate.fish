@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /Users/rakshitjangid/Downloads/nexxora_promotional_engine-main/backend/myenv
+set -gx VIRTUAL_ENV /Users/rakshitjangid/Documents/PromoEngine/promotional_engine_nexxora/backend/myenv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

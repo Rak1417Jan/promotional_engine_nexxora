@@ -25,6 +25,6 @@ class Segment(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator", "operator_id"),
+        Index("idx_segments_operator", "operator_id"),
     )
 

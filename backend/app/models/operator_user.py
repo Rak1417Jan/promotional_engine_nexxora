@@ -30,7 +30,7 @@ class OperatorUser(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_operator_email", "operator_id", "email", unique=True),
-        Index("idx_email", "email"),
-        Index("idx_role", "operator_id", "role"),
+        Index("idx_op_users_operator_email", "operator_id", "email", unique=True),
+        Index("idx_op_users_email", "email"),
+        Index("idx_op_users_role", "operator_id", "role"),
     )

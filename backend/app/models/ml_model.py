@@ -28,6 +28,6 @@ class MLModel(Base):
     
     # Indexes
     __table_args__ = (
-        Index("idx_type_status", "model_type", "status"),
+        Index("idx_ml_models_type_status", "model_type", "status"),
     )
 
